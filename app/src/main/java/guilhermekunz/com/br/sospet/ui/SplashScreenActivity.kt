@@ -6,6 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import guilhermekunz.com.br.sospet.R
+import guilhermekunz.com.br.sospet.ui.authentication.AuthenticationActivity
 
 class SplashScreenActivity : AppCompatActivity() {
 
@@ -13,7 +14,7 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this@SplashScreenActivity, MainActivity::class.java)
+            val intent = Intent(this@SplashScreenActivity, AuthenticationActivity::class.java)
             startActivity(intent)
             finish()
         }, 2000)

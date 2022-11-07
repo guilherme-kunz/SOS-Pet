@@ -1,3 +1,23 @@
 <resources>
+
     <string name="app_name">SOS Pet</string>
+
+    <!-- Strings related to Sign In -->
+    <string name="prompt_email">E-mail</string>
+    <string name="description_email">Digite o seu e-mail para realizar o login</string>
+    <string name="description_password">Digite a sua senha para realizar o login</string>
+    <string name="button_login">ENTRAR</string>
+    <string name="prompt_password">Senha</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome!"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="fragment_sign_in_go_to_sign_up">Novo por aqui? Cadastre-se</string>
+
+    <!-- Strings related to Sign Up -->
+    <string name="fragment_sign_up_confirm_password">Confirme a senha</string>
+    <string name="fragment_sign_up_go_to_sign_in">Ja possui uma conta? Faça login</string>
+
 </resources>

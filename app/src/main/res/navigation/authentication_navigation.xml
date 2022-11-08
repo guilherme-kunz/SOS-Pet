@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/signInFragment"
         android:name="guilhermekunz.com.br.sospet.ui.authentication.signin.SignInFragment"
-        android:label="fragment_sign_up"
+        android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in" >
         <action
             android:id="@+id/action_signInFragment_to_signUpFragment"
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/signUpFragment"
         android:name="guilhermekunz.com.br.sospet.ui.authentication.signup.SignUpFragment"
-        android:label="SignUpFragment"
+        android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" >
         <action
             android:id="@+id/action_signUpFragment_to_signInFragment"

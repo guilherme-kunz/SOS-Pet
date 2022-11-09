@@ -68,6 +68,9 @@ class SignUpFragment : Fragment() {
             startActivity(intent)
             activity?.finish()
         }
+        viewModel.errorSignUp.observe(viewLifecycleOwner) {
+            //TODO
+        }
     }
 
     private fun setupSignUpButton() {

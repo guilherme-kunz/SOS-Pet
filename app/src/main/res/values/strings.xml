@@ -14,5 +14,11 @@
     <string name="fragment_sign_up_confirm_password">Confirme a senha</string>
     <string name="fragment_sign_up_go_to_sign_in">Ja possui uma conta? Faça login</string>
     <string name="fragment_sign_up_password_instructions">Sua senha precisa conter no mínimo 8 caracteres, sendo ao menos uma letra maiúscula, números e caracteres especiais.</string>
+    <string name="fragment_sign_up_dialog_error_title">Erro</string>
+    <string name="fragment_sign_up_dialog_error_content">Não foi possivel criar a sua conta tente novamente mais tarde.</string>
+    <string name="fragment_sign_up_dialog_error_button">OK</string>
+    <string name="fragment_sign_up_dialog_success_title">Sucesso</string>
+    <string name="fragment_sign_up_dialog_success_content">Conta criada com sucesso, agora é só fazer login</string>
+    <string name="fragment_sign_up_dialog_success_button">Conta criada com sucesso, agora é só fazer login</string>
 
 </resources>

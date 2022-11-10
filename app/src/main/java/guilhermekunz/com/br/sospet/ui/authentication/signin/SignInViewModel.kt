@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
-import guilhermekunz.com.br.sospet.utils.ValidationUtils
+import guilhermekunz.com.br.sospet.utils.validation.ValidationUtils
 import kotlinx.coroutines.launch
 
 class SignInViewModel : ViewModel() {

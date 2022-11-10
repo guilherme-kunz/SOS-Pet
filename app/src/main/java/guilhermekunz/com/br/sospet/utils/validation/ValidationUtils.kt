@@ -1,4 +1,4 @@
-package guilhermekunz.com.br.sospet.utils
+package guilhermekunz.com.br.sospet.utils.validation
 
 import android.util.Patterns
 

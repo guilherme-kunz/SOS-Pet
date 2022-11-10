@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
-import guilhermekunz.com.br.sospet.utils.ValidationUtils
+import guilhermekunz.com.br.sospet.utils.validation.ValidationUtils
 import kotlinx.coroutines.launch
 
 class SignUpViewModel : ViewModel() {
@@ -13,6 +13,8 @@ class SignUpViewModel : ViewModel() {
     private var email: String? = null
     private var password: String? = null
     private var passwordConfirmation: String? = null
+
+    var loadingStateLiveDate = MutableLiveData<State>()
 
     private val _validData = MutableLiveData(false)
     val validData: LiveData<Boolean> = _validData
@@ -48,6 +50,7 @@ class SignUpViewModel : ViewModel() {
 
     fun signUp() {
         viewModelScope.takeIf { _validData.value == true }?.launch {
+            loadingStateLiveDate.value = State.LOADING
             firebaseAuth.createUserWithEmailAndPassword(email!!, passwordConfirmation!!)
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
@@ -56,7 +59,12 @@ class SignUpViewModel : ViewModel() {
                         _errorSignUp.value = Unit
                     }
                 }
+            loadingStateLiveDate.value = State.LOADING_FINISHED
         }
+    }
+
+    enum class State {
+        LOADING, LOADING_FINISHED
     }
 
 }

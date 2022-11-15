@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/rescueFragment">
+
+    <fragment
+        android:id="@+id/adoptionFragment"
+        android:name="guilhermekunz.com.br.sospet.ui.adoption.AdoptionFragment"
+        android:label="fragment_adoption"
+        tools:layout="@layout/fragment_adoption" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="guilhermekunz.com.br.sospet.ui.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/rescueFragment"
+        android:name="guilhermekunz.com.br.sospet.ui.rescue.RescueFragment"
+        android:label="fragment_rescue"
+        tools:layout="@layout/fragment_sighted" />
+    <fragment
+        android:id="@+id/wantedFragment"
+        android:name="guilhermekunz.com.br.sospet.ui.wanted.WantedFragment"
+        android:label="fragment_wanted"
+        tools:layout="@layout/fragment_wanted" />
+</navigation>

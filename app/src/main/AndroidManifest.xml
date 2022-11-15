@@ -4,7 +4,7 @@
     package="guilhermekunz.com.br.sospet" >
 
     <application
-        android:name=".di.Application"
+        android:name=".core.Application"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"

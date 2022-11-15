@@ -108,7 +108,7 @@ class SignUpFragment : Fragment() {
                     )
                 )
             )
-        }
+        }.show()
     }
 
     private fun dialogSignUpSuccess() {
@@ -128,6 +128,6 @@ class SignUpFragment : Fragment() {
                     )
                 )
             )
-        }
+        }.show()
     }
 }

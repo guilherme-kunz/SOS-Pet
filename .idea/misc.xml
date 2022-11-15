@@ -7,8 +7,13 @@
         <entry key="..\:/Users/guilherme.kunz/StudioProjects/SOSPet/app/src/main/res/layout/activity_main.xml" value="0.33229166666666665" />
         <entry key="..\:/Users/guilherme.kunz/StudioProjects/SOSPet/app/src/main/res/layout/activity_splash_screen.xml" value="0.33229166666666665" />
         <entry key="..\:/Users/guilherme.kunz/StudioProjects/SOSPet/app/src/main/res/layout/dialog_generic_one_button.xml" value="0.33125" />
+        <entry key="..\:/Users/guilherme.kunz/StudioProjects/SOSPet/app/src/main/res/layout/fragment_adoption.xml" value="0.33229166666666665" />
+        <entry key="..\:/Users/guilherme.kunz/StudioProjects/SOSPet/app/src/main/res/layout/fragment_profile.xml" value="0.33229166666666665" />
+        <entry key="..\:/Users/guilherme.kunz/StudioProjects/SOSPet/app/src/main/res/layout/fragment_sighted.xml" value="0.33229166666666665" />
         <entry key="..\:/Users/guilherme.kunz/StudioProjects/SOSPet/app/src/main/res/layout/fragment_sign_in.xml" value="0.3151041666666667" />
         <entry key="..\:/Users/guilherme.kunz/StudioProjects/SOSPet/app/src/main/res/layout/fragment_sign_up.xml" value="0.33229166666666665" />
+        <entry key="..\:/Users/guilherme.kunz/StudioProjects/SOSPet/app/src/main/res/layout/fragment_wanted.xml" value="0.33229166666666665" />
+        <entry key="..\:/Users/guilherme.kunz/StudioProjects/SOSPet/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.33229166666666665" />
       </map>
     </option>
   </component>

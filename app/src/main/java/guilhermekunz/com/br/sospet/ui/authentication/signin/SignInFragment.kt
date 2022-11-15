@@ -11,6 +11,9 @@ import androidx.navigation.fragment.findNavController
 import guilhermekunz.com.br.sospet.R
 import guilhermekunz.com.br.sospet.databinding.FragmentSignInBinding
 import guilhermekunz.com.br.sospet.ui.MainActivity
+import guilhermekunz.com.br.sospet.utils.dialog.ButtonDialogOne
+import guilhermekunz.com.br.sospet.utils.dialog.DialogGenericOneButton
+import guilhermekunz.com.br.sospet.utils.dialog.DialogOneButtonModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -20,6 +23,8 @@ class SignInFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel by viewModel<SignInViewModel>()
+
+    private val dialogDialogGenericOneButton by lazy { DialogGenericOneButton(requireContext()) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -67,7 +72,7 @@ class SignInFragment : Fragment() {
             activity?.finish()
         }
         viewModel.errorSignIn.observe(viewLifecycleOwner) {
-            //TODO
+            signInError()
         }
     }
 
@@ -75,6 +80,21 @@ class SignInFragment : Fragment() {
         binding.signInButton.setOnClickListener {
             viewModel.signIn()
         }
+    }
+
+    private fun signInError() {
+        dialogDialogGenericOneButton.apply {
+            setupDialog(
+                DialogOneButtonModel(
+                    title = getString(R.string.fragment_sign_in_dialog_error_title),
+                    content = getString(R.string.fragment_sign_in_dialog_error_content),
+                    button = ButtonDialogOne(
+                        titleButton = getString(R.string.fragment_sign_in_dialog_error_button),
+                        action = { this.dismiss() }
+                    )
+                )
+            )
+        }.show()
     }
 
 }

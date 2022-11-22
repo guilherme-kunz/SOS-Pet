@@ -29,7 +29,8 @@
     <string name="bottom_navigation_wanted">Procurados</string>
     <string name="bottom_navigation_adoption">Adoção</string>
     <string name="bottom_navigation_profile">Perfil</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Strings related to Fragment Adoption-->
+    <string name="fragment_adoption_title">Em lar temporário para adoção</string>
 
 </resources>

@@ -7,6 +7,7 @@ import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import guilhermekunz.com.br.sospet.R
+import guilhermekunz.com.br.sospet.launcher.LauncherActivity
 import guilhermekunz.com.br.sospet.ui.authentication.AuthenticationActivity
 
 class SplashScreenActivity : AppCompatActivity() {

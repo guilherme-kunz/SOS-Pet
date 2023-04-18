@@ -1,6 +1,7 @@
 package guilhermekunz.com.br.sospet.ui.authentication.signup
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,12 +10,14 @@ import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import guilhermekunz.com.br.sospet.R
 import guilhermekunz.com.br.sospet.databinding.FragmentSignUpBinding
 import guilhermekunz.com.br.sospet.ui.MainActivity
 import guilhermekunz.com.br.sospet.utils.dialog.ButtonDialogOne
 import guilhermekunz.com.br.sospet.utils.dialog.DialogGenericOneButton
 import guilhermekunz.com.br.sospet.utils.dialog.DialogOneButtonModel
+import guilhermekunz.com.br.sospet.utils.makeLinks
 import guilhermekunz.com.br.sospet.utils.validation.ValidationUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -139,22 +142,15 @@ class SignUpFragment : Fragment() {
     }
 
     private fun dialogSignUpSuccess() {
-        dialogDialogGenericOneButton.apply {
-            setupDialog(
-                DialogOneButtonModel(
-                    title = getString(R.string.fragment_sign_up_dialog_success_title),
-                    content = getString(R.string.fragment_sign_up_dialog_success_content),
-                    button = ButtonDialogOne(
-                        titleButton = getString(R.string.fragment_sign_up_dialog_success_button),
-                        action = {
-                            this.dismiss()
-                            val intent = Intent(requireContext(), MainActivity::class.java)
-                            startActivity(intent)
-                            activity?.finish()
-                        }
-                    )
-                )
-            )
-        }.show()
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(resources.getString(R.string.fragment_sign_up_dialog_success_title))
+            .setMessage(resources.getString(R.string.fragment_sign_up_dialog_success_content))
+            .setNeutralButton(resources.getString(R.string.fragment_sign_up_dialog_success_button)) { _, _ ->
+                val intent = Intent(requireContext(), MainActivity::class.java)
+                startActivity(intent)
+                activity?.finish()
+            }
+            .show()
     }
+    
 }

@@ -26,6 +26,7 @@
     <string name="fragment_sign_up_email_error_message">E-mail não é valido</string>
     <string name="fragment_sign_up_password_error_message">Senha não ẽ valida</string>
     <string name="fragment_sign_up_confirm_password_error_message">As senhas não são identicas</string>
+<!--    <string name="fragment_sign_up_go_to_sign_in_button">Faça login</string>-->
 
     <!-- Strings related to Bottom Navigation-->
     <string name="bottom_navigation_rescue">Resgate</string>

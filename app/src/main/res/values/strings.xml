@@ -37,4 +37,8 @@
     <!-- Strings related to Fragment Adoption-->
     <string name="fragment_adoption_title">Em lar temporário para adoção</string>
 
+    <!-- Strings related to Fragment Profile-->
+    <string name="fragment_profile_title">Perfil</string>
+    <string name="fragment_profile_add_image">Adicionar foto</string>
+
 </resources>

@@ -1,17 +1,22 @@
 package guilhermekunz.com.br.sospet.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 import guilhermekunz.com.br.sospet.R
 import guilhermekunz.com.br.sospet.databinding.ActivityMainBinding
+import guilhermekunz.com.br.sospet.ui.authentication.AuthenticationActivity
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+    private val firebaseAuth by lazy { FirebaseAuth.getInstance() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +24,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         setupBottomNavigation()
+        verifyUser()
+    }
+
+
+    // Criar Dialog
+    private fun verifyUser() {
+        val user = firebaseAuth.currentUser
+        if (user == null) {
+            val intent = Intent(applicationContext, AuthenticationActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun setupBottomNavigation() {

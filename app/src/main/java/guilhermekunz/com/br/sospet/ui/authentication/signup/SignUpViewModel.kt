@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 class SignUpViewModel : ViewModel() {
 
     private var email: String? = null
-    private var password: String? = null
+    var password: String? = null
     private var passwordConfirmation: String? = null
 
     var loadingStateLiveDate = MutableLiveData<State>()
@@ -32,6 +32,7 @@ class SignUpViewModel : ViewModel() {
         validateData()
     }
 
+    @JvmName("setPassword1")
     fun setPassword(password: String) {
         this.password = password
         validateData()
@@ -68,3 +69,6 @@ class SignUpViewModel : ViewModel() {
     }
 
 }
+
+
+

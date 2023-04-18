@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import guilhermekunz.com.br.sospet.R
@@ -14,6 +15,7 @@ import guilhermekunz.com.br.sospet.ui.MainActivity
 import guilhermekunz.com.br.sospet.utils.dialog.ButtonDialogOne
 import guilhermekunz.com.br.sospet.utils.dialog.DialogGenericOneButton
 import guilhermekunz.com.br.sospet.utils.dialog.DialogOneButtonModel
+import guilhermekunz.com.br.sospet.utils.validation.ValidationUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SignUpFragment : Fragment() {
@@ -44,6 +46,7 @@ class SignUpFragment : Fragment() {
         setupInputs()
         initObserver()
         setupSignUpButton()
+        setupFormErrors()
     }
 
     private fun setupGoToSignInButton() {
@@ -61,6 +64,30 @@ class SignUpFragment : Fragment() {
         }
         binding.fragmentSignUpPasswordConfirmation.addTextChangedListener {
             viewModel.setPasswordConfirmation(it.toString())
+        }
+    }
+
+    private fun setupFormErrors() {
+        binding.fragmentSignUpEmail.doOnTextChanged { text, _, _, _ ->
+            if (ValidationUtils.isEmailValidated(text.toString())) {
+                binding.signUpEmail.error = null
+            } else {
+                binding.signUpEmail.error = getString(R.string.fragment_sign_up_email_error_message)
+            }
+        }
+        binding.fragmentSignUpPassword.doOnTextChanged { text, _, _, _ ->
+            if (ValidationUtils.isPasswordValidated(text.toString()) == true) {
+                binding.signUpPassword.error = null
+            } else {
+                binding.signUpPassword.error = getString(R.string.fragment_sign_up_password_error_message)
+            }
+        }
+        binding.fragmentSignUpPasswordConfirmation.doOnTextChanged { text, _, _, _ ->
+            if (ValidationUtils.isPasswordConfirmationValidated(viewModel.password, text.toString())) {
+                binding.signUpConfirmPassword.error = null
+            } else {
+                binding.signUpConfirmPassword.error = getString(R.string.fragment_sign_up_confirm_password_error_message)
+            }
         }
     }
 

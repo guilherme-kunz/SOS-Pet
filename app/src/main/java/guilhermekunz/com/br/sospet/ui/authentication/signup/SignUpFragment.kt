@@ -86,7 +86,8 @@ class SignUpFragment : Fragment() {
             }
         }
         binding.fragmentSignUpPasswordConfirmation.doOnTextChanged { text, _, _, _ ->
-            if (ValidationUtils.isPasswordConfirmationValidated(viewModel.password, text.toString())) {
+            val password = binding.fragmentSignUpPassword.text.toString()
+            if (ValidationUtils.isPasswordConfirmationValidated(password, text.toString())) {
                 binding.signUpConfirmPassword.error = null
             } else {
                 binding.signUpConfirmPassword.error = getString(R.string.fragment_sign_up_confirm_password_error_message)

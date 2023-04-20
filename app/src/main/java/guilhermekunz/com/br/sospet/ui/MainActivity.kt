@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import guilhermekunz.com.br.sospet.R
 import guilhermekunz.com.br.sospet.databinding.ActivityMainBinding
@@ -27,15 +28,23 @@ class MainActivity : AppCompatActivity() {
         verifyUser()
     }
 
-
-    // Criar Dialog
     private fun verifyUser() {
         val user = firebaseAuth.currentUser
         if (user == null) {
-            val intent = Intent(applicationContext, AuthenticationActivity::class.java)
-            startActivity(intent)
-            finish()
+            logoutDialog()
         }
+    }
+
+    private fun logoutDialog() {
+        MaterialAlertDialogBuilder(applicationContext)
+            .setTitle(resources.getString(R.string.main_activity_dialog_title))
+            .setMessage(resources.getString(R.string.main_activity_dialog_content))
+            .setNeutralButton(resources.getString(R.string.main_activity_dialog_button)) { _, _ ->
+                val intent = Intent(applicationContext, AuthenticationActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            .show()
     }
 
     private fun setupBottomNavigation() {

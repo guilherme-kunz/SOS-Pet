@@ -41,4 +41,9 @@
     <string name="fragment_profile_title">Perfil</string>
     <string name="fragment_profile_add_image">Adicionar foto</string>
 
+    <!-- Strings related to Main Activity-->
+    <string name="main_activity_dialog_title">Sessão expirada</string>
+    <string name="main_activity_dialog_content">A sua sessão expirou faça login novamente</string>
+    <string name="main_activity_dialog_button">OK</string>
+
 </resources>

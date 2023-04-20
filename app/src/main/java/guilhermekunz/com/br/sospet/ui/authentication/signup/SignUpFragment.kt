@@ -1,7 +1,6 @@
 package guilhermekunz.com.br.sospet.ui.authentication.signup
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,10 +13,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import guilhermekunz.com.br.sospet.R
 import guilhermekunz.com.br.sospet.databinding.FragmentSignUpBinding
 import guilhermekunz.com.br.sospet.ui.MainActivity
-import guilhermekunz.com.br.sospet.utils.dialog.ButtonDialogOne
 import guilhermekunz.com.br.sospet.utils.dialog.DialogGenericOneButton
-import guilhermekunz.com.br.sospet.utils.dialog.DialogOneButtonModel
-import guilhermekunz.com.br.sospet.utils.makeLinks
 import guilhermekunz.com.br.sospet.utils.validation.ValidationUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -82,7 +78,8 @@ class SignUpFragment : Fragment() {
             if (ValidationUtils.isPasswordValidated(text.toString()) == true) {
                 binding.signUpPassword.error = null
             } else {
-                binding.signUpPassword.error = getString(R.string.fragment_sign_up_password_error_message)
+                binding.signUpPassword.error =
+                    getString(R.string.fragment_sign_up_password_error_message)
             }
         }
         binding.fragmentSignUpPasswordConfirmation.doOnTextChanged { text, _, _, _ ->
@@ -90,7 +87,8 @@ class SignUpFragment : Fragment() {
             if (ValidationUtils.isPasswordConfirmationValidated(password, text.toString())) {
                 binding.signUpConfirmPassword.error = null
             } else {
-                binding.signUpConfirmPassword.error = getString(R.string.fragment_sign_up_confirm_password_error_message)
+                binding.signUpConfirmPassword.error =
+                    getString(R.string.fragment_sign_up_confirm_password_error_message)
             }
         }
     }
@@ -128,18 +126,15 @@ class SignUpFragment : Fragment() {
     }
 
     private fun signUpError() {
-        dialogDialogGenericOneButton.apply {
-            setupDialog(
-                DialogOneButtonModel(
-                    title = getString(R.string.fragment_sign_up_dialog_error_title),
-                    content = getString(R.string.fragment_sign_up_dialog_error_content),
-                    button = ButtonDialogOne(
-                        titleButton = getString(R.string.fragment_sign_up_dialog_error_button),
-                        action = { this.dismiss() }
-                    )
-                )
-            )
-        }.show()
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(resources.getString(R.string.fragment_sign_up_dialog_error_title))
+            .setMessage(resources.getString(R.string.fragment_sign_up_dialog_error_content))
+            .setNeutralButton(resources.getString(R.string.fragment_sign_up_dialog_error_button)) { _, _ ->
+                val intent = Intent(requireContext(), MainActivity::class.java)
+                startActivity(intent)
+                activity?.finish()
+            }
+            .show()
     }
 
     private fun dialogSignUpSuccess() {
@@ -153,5 +148,5 @@ class SignUpFragment : Fragment() {
             }
             .show()
     }
-    
+
 }

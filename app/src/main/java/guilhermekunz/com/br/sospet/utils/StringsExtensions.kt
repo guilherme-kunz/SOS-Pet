@@ -4,6 +4,7 @@ import android.text.*
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
+import android.widget.EditText
 import android.widget.TextView
 
 fun TextView.makeLinks(vararg links: Pair<String, View.OnClickListener>) {
@@ -31,4 +32,22 @@ fun TextView.makeLinks(vararg links: Pair<String, View.OnClickListener>) {
     this.movementMethod =
         LinkMovementMethod.getInstance()
     this.setText(spannableString, TextView.BufferType.SPANNABLE)
+}
+
+fun EditText.removeEmojis() {
+    try {
+        filters += InputFilter { source, start, end, dest, dstart, dend ->
+            for (index in start until end) {
+                val type = Character.getType(source[index])
+                if (type == Character.SURROGATE.toInt() ||
+                    type == Character.NON_SPACING_MARK.toInt() ||
+                    type == Character.OTHER_SYMBOL.toInt()
+                ) {
+                    return@InputFilter ""
+                }
+            }
+            null
+        }
+    } catch (exception: Exception) {
+    }
 }

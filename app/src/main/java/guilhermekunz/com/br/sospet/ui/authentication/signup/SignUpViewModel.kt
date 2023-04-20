@@ -10,7 +10,9 @@ import kotlinx.coroutines.launch
 
 class SignUpViewModel : ViewModel() {
 
+    private var fullName: String? = null
     private var email: String? = null
+    private var cellPhone: String? = null
     var password: String? = null
     private var passwordConfirmation: String? = null
 
@@ -27,8 +29,18 @@ class SignUpViewModel : ViewModel() {
 
     private val firebaseAuth by lazy { FirebaseAuth.getInstance() }
 
+    fun setFullName(fullName: String) {
+        this.fullName = fullName
+        validateData()
+    }
+
     fun setEmail(email: String) {
         this.email = email
+        validateData()
+    }
+
+    fun setCellPhone(cellPhone: String){
+        this.cellPhone = cellPhone
         validateData()
     }
 

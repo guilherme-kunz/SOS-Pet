@@ -13,18 +13,18 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import guilhermekunz.com.br.sospet.R
 import guilhermekunz.com.br.sospet.databinding.FragmentSignUpBinding
 import guilhermekunz.com.br.sospet.ui.MainActivity
-import guilhermekunz.com.br.sospet.utils.dialog.DialogGenericOneButton
+import guilhermekunz.com.br.sospet.utils.GenericMask
+import guilhermekunz.com.br.sospet.utils.removeEmojis
 import guilhermekunz.com.br.sospet.utils.validation.ValidationUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SignUpFragment : Fragment() {
 
+    private val CELL_PHONE_MASK = "(##) #####-####"
     private var _binding: FragmentSignUpBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel by viewModel<SignUpViewModel>()
-
-    private val dialogDialogGenericOneButton by lazy { DialogGenericOneButton(requireContext()) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,8 +55,19 @@ class SignUpFragment : Fragment() {
     }
 
     private fun setupInputs() {
+        binding.fragmentSignUpName.apply {
+            removeEmojis()
+            addTextChangedListener {
+                GenericMask(binding.fragmentSignUpName, CELL_PHONE_MASK)
+                viewModel.setFullName(it.toString())
+            }
+
+        }
         binding.fragmentSignUpEmail.addTextChangedListener {
             viewModel.setEmail(it.toString())
+        }
+        binding.fragmentSignUpCellphone.addTextChangedListener {
+            viewModel.setCellPhone(it.toString())
         }
         binding.fragmentSignUpPassword.addTextChangedListener {
             viewModel.setPassword(it.toString())

@@ -15,6 +15,7 @@
 
     <!-- Strings related to Sign Up -->
     <string name="fragment_sign_up_name">Nome completo</string>
+    <string name="fragment_sign_up_button">Cadastrar</string>
     <string name="fragment_sign_up_name_description">Digite o seu nome completo para realizar o cadastro</string>
     <string name="fragment_sign_up_cellphone">Celular</string>
     <string name="fragment_sign_up_cellphone_description">Digite o seu número do celular para realizar o cadastro</string>

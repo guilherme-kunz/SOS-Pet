@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import guilhermekunz.com.br.sospet.model.User
 import guilhermekunz.com.br.sospet.utils.validation.ValidationUtils
 import kotlinx.coroutines.launch
 
@@ -29,6 +31,7 @@ class SignUpViewModel : ViewModel() {
     val signUpResponse: LiveData<Unit> = _signUpResponse
 
     private val firebaseAuth by lazy { FirebaseAuth.getInstance() }
+    private val firebaseDatabase by lazy { FirebaseDatabase.getInstance() }
 
     fun setImageBase64(imageBase64: String) {
         this.imageBase64 = imageBase64
@@ -44,7 +47,7 @@ class SignUpViewModel : ViewModel() {
         validateData()
     }
 
-    fun setCellPhone(cellPhone: String){
+    fun setCellPhone(cellPhone: String) {
         this.cellPhone = cellPhone
         validateData()
     }
@@ -70,9 +73,24 @@ class SignUpViewModel : ViewModel() {
         viewModelScope.takeIf { _validData.value == true }?.launch {
             loadingStateLiveDate.value = State.LOADING
             firebaseAuth.createUserWithEmailAndPassword(email!!, passwordConfirmation!!)
-                .addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        _signUpResponse.value = Unit
+                .addOnCompleteListener { auth ->
+                    if (auth.isSuccessful) {
+                        val databaseRef = firebaseDatabase.reference.child("users")
+                            .child(firebaseAuth.currentUser!!.uid)
+                        val user: User = User(
+                            fullName,
+                            email,
+                            cellPhone,
+                            firebaseAuth.currentUser!!.uid,
+                            imageBase64
+                        )
+                        databaseRef.setValue(user).addOnCompleteListener { user ->
+                            if (user.isSuccessful) {
+                                _signUpResponse.value = Unit
+                            } else {
+                                _errorSignUp.value = Unit
+                            }
+                        }
                     } else {
                         _errorSignUp.value = Unit
                     }

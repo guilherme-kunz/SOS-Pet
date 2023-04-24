@@ -1,6 +1,7 @@
 package guilhermekunz.com.br.sospet.ui.authentication.signup
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,14 +14,12 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import guilhermekunz.com.br.sospet.R
 import guilhermekunz.com.br.sospet.databinding.FragmentSignUpBinding
 import guilhermekunz.com.br.sospet.ui.MainActivity
-import guilhermekunz.com.br.sospet.utils.GenericMask
-import guilhermekunz.com.br.sospet.utils.removeEmojis
+import guilhermekunz.com.br.sospet.utils.*
 import guilhermekunz.com.br.sospet.utils.validation.ValidationUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SignUpFragment : Fragment() {
 
-    private val CELL_PHONE_MASK = "(##) #####-####"
     private var _binding: FragmentSignUpBinding? = null
     private val binding get() = _binding!!
 
@@ -49,25 +48,29 @@ class SignUpFragment : Fragment() {
     }
 
     private fun setupGoToSignInButton() {
-        binding.fragmentSignUpGoToSignIn.setOnClickListener {
-            findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
-        }
+        binding.fragmentSignUpGoToSignIn.makeLinks(
+            Pair(PAIR_SIGN_UP, View.OnClickListener {
+                findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
+            })
+        )
+        binding.fragmentSignUpGoToSignIn.highlightColor = Color.TRANSPARENT
     }
 
     private fun setupInputs() {
         binding.fragmentSignUpName.apply {
             removeEmojis()
             addTextChangedListener {
-                GenericMask(binding.fragmentSignUpName, CELL_PHONE_MASK)
                 viewModel.setFullName(it.toString())
             }
-
         }
         binding.fragmentSignUpEmail.addTextChangedListener {
             viewModel.setEmail(it.toString())
         }
-        binding.fragmentSignUpCellphone.addTextChangedListener {
-            viewModel.setCellPhone(it.toString())
+        binding.fragmentSignUpCellphone.apply {
+            addMask(CELL_PHONE_MASK)
+            addTextChangedListener {
+                viewModel.setCellPhone(it.toString())
+            }
         }
         binding.fragmentSignUpPassword.addTextChangedListener {
             viewModel.setPassword(it.toString())
@@ -78,11 +81,26 @@ class SignUpFragment : Fragment() {
     }
 
     private fun setupFormErrors() {
+        binding.fragmentSignUpName.doOnTextChanged { text, _, _, _ ->
+            if (ValidationUtils.isFullNameValidated(text.toString())) {
+                binding.signUpName.error = null
+            } else {
+                binding.signUpName.error = getString(R.string.fragment_sign_up_name_error_message)
+            }
+        }
         binding.fragmentSignUpEmail.doOnTextChanged { text, _, _, _ ->
             if (ValidationUtils.isEmailValidated(text.toString())) {
                 binding.signUpEmail.error = null
             } else {
                 binding.signUpEmail.error = getString(R.string.fragment_sign_up_email_error_message)
+            }
+        }
+        binding.fragmentSignUpCellphone.doOnTextChanged { text, _, _, _ ->
+            if (ValidationUtils.isCellPhoneValidated(text.toString())) {
+                binding.signUpCellphone.error = null
+            } else {
+                binding.signUpCellphone.error =
+                    getString(R.string.fragment_sign_up_cell_phone_error_message)
             }
         }
         binding.fragmentSignUpPassword.doOnTextChanged { text, _, _, _ ->

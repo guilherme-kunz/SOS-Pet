@@ -1,11 +1,14 @@
 package guilhermekunz.com.br.sospet.utils
 
+import android.graphics.Color
 import android.text.*
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import androidx.core.content.res.ResourcesCompat
+import guilhermekunz.com.br.sospet.R
 
 fun TextView.makeLinks(vararg links: Pair<String, View.OnClickListener>) {
     val spannableString = SpannableString(this.text)
@@ -13,8 +16,9 @@ fun TextView.makeLinks(vararg links: Pair<String, View.OnClickListener>) {
     for (link in links) {
         val clickableSpan = object : ClickableSpan() {
             override fun updateDrawState(textPaint: TextPaint) {
-                textPaint.color = textPaint.linkColor
+                textPaint.color = Color.parseColor(PARSE_COLOR)
                 textPaint.isUnderlineText = false
+                textPaint.typeface = ResourcesCompat.getFont(context, R.font.roboto_bold)
             }
 
             override fun onClick(view: View) {

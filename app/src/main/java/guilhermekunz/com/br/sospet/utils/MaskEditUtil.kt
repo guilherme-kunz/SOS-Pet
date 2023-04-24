@@ -1,64 +1,59 @@
 package guilhermekunz.com.br.sospet.utils
 
 import android.text.Editable
+import android.text.InputFilter
 import android.text.TextWatcher
 import android.widget.EditText
-import java.lang.ref.WeakReference
 
-open class GenericMask(view: EditText, private val mask: String) : TextWatcher {
+fun EditText.addMask(mask: String) {
+    this.addTextChangedListener(object : TextWatcher {
+        var isUpdating = false
+        var oldString = ""
 
-    private val reference: WeakReference<EditText> = WeakReference(view)
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
-    private var isUpdating = false
-    private var oldText = ""
-    private var maskedText = StringBuilder()
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
-    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
-
-    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-        reference.get().let {
-            maskedText.delete(0, maskedText.length)
-
-            val cleanText = clear(reference.get()?.text.toString())
-            if (isUpdating) {
-                oldText = cleanText
-                isUpdating = false
+        override fun afterTextChanged(s: Editable?) {
+            val str = s.toString()
+            if (isUpdating || str == oldString) {
                 return
             }
-
-            apply(cleanText)
-
+            val onlyDigits = str.replace("[^\\d]".toRegex(), "")
+            if (onlyDigits.length > 10) {
+                isUpdating = true
+                setText(oldString)
+                setSelection(oldString.length)
+                return
+            }
+            var formatted = ""
+            var index = 0
+            for (i in 0 until onlyDigits.length) {
+                val c = onlyDigits[i]
+                if (index >= mask.length) {
+                    break
+                }
+                while (mask[index] != '#' && index < mask.length) {
+                    formatted += mask[index]
+                    index++
+                }
+                formatted += c
+                index++
+            }
             isUpdating = true
-
-            reference.get()?.setText(maskedText.toString())
-            reference.get()?.setSelection(reference.get()?.length() ?: 0)
+            setText(formatted)
+            setSelection(formatted.length)
+            oldString = formatted
+            isUpdating = false
         }
-    }
-
-    override fun afterTextChanged(p0: Editable?) {}
-
-    private fun apply(cleanText: String) {
-        var i = 0
-        mask.forEach { m ->
-            if ((m != '#' && cleanText.length > oldText.length) || (m != '#' && cleanText.length < oldText.length && cleanText.length != i)) {
-                maskedText.append(m)
-                return@forEach
-            }
-
-            try {
-                maskedText.append(cleanText[i])
-            } catch (e: Exception) {
-                return
-            }
-
-            i++
-        }
-    }
-
-    companion object {
-
-        fun clear(maskedText: String): String = maskedText.replace(Regex("[^a-zA-Z0-9]*"), "")
-
-    }
-
+    })
 }
+
+fun setMaxLength(maxLength: Int) = arrayOf<InputFilter>(InputFilter.LengthFilter(maxLength))
+
+//    companion object {
+//
+//        fun clear(maskedText: String): String = maskedText.replace(Regex("[^a-zA-Z0-9]*"), "")
+//
+//    }
+

@@ -19,7 +19,7 @@
     <string name="fragment_sign_up_cellphone">Celular</string>
     <string name="fragment_sign_up_cellphone_description">Digite o seu número do celular para realizar o cadastro</string>
     <string name="fragment_sign_up_confirm_password">Confirme a senha</string>
-    <string name="fragment_sign_up_go_to_sign_in">Ja possui uma conta? Faça login</string>
+    <string name="fragment_sign_up_go_to_sign_in">Já possui uma conta? Faça login</string>
     <string name="fragment_sign_up_password_instructions">Sua senha precisa conter no mínimo 8 caracteres, sendo ao menos uma letra maiúscula, números e caracteres especiais.</string>
     <string name="fragment_sign_up_dialog_error_title">Erro</string>
     <string name="fragment_sign_up_dialog_error_content">Não foi possivel criar a sua conta tente novamente mais tarde.</string>
@@ -27,9 +27,11 @@
     <string name="fragment_sign_up_dialog_success_title">Sucesso</string>
     <string name="fragment_sign_up_dialog_success_content">Conta criada com sucesso, agora é só fazer login</string>
     <string name="fragment_sign_up_dialog_success_button">OK</string>
-    <string name="fragment_sign_up_email_error_message">E-mail não é valido</string>
-    <string name="fragment_sign_up_password_error_message">Senha não ẽ valida</string>
+    <string name="fragment_sign_up_email_error_message">E-mail não está correto</string>
+    <string name="fragment_sign_up_name_error_message">Nome não está correto</string>
+    <string name="fragment_sign_up_password_error_message">Senha não é valida</string>
     <string name="fragment_sign_up_confirm_password_error_message">As senhas não são identicas</string>
+    <string name="fragment_sign_up_cell_phone_error_message">O número de celular não é válido</string>
     <string name="fragment_sign_up_add_pic">Adicionar foto</string>
 
 <!--    <string name="fragment_sign_up_go_to_sign_in_button">Faça login</string>-->

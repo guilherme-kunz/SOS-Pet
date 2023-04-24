@@ -1,6 +1,7 @@
 package guilhermekunz.com.br.sospet.ui.authentication.signin
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,9 +12,11 @@ import androidx.navigation.fragment.findNavController
 import guilhermekunz.com.br.sospet.R
 import guilhermekunz.com.br.sospet.databinding.FragmentSignInBinding
 import guilhermekunz.com.br.sospet.ui.MainActivity
+import guilhermekunz.com.br.sospet.utils.PAIR_SIGN_IN
 import guilhermekunz.com.br.sospet.utils.dialog.ButtonDialogOne
 import guilhermekunz.com.br.sospet.utils.dialog.DialogGenericOneButton
 import guilhermekunz.com.br.sospet.utils.dialog.DialogOneButtonModel
+import guilhermekunz.com.br.sospet.utils.makeLinks
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -48,9 +51,12 @@ class SignInFragment : Fragment() {
     }
 
     private fun setupGoToSignUpButton() {
-        binding.fragmentSignInGoToSignUp.setOnClickListener {
-            findNavController().navigate(R.id.action_signInFragment_to_signUpFragment)
-        }
+        binding.fragmentSignInGoToSignUp.makeLinks(
+            Pair(PAIR_SIGN_IN, View.OnClickListener {
+                findNavController().navigate(R.id.action_signInFragment_to_signUpFragment)
+            })
+        )
+        binding.fragmentSignInGoToSignUp.highlightColor = Color.TRANSPARENT
     }
 
     private fun setupInputs() {

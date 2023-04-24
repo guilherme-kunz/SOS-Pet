@@ -1,4 +1,4 @@
-package guilhermekunz.com.br.sospet.utils
+package guilhermekunz.com.br.sospet.utils.extensions
 
 import android.graphics.Color
 import android.text.*
@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import guilhermekunz.com.br.sospet.R
+import guilhermekunz.com.br.sospet.utils.PARSE_COLOR
 
 fun TextView.makeLinks(vararg links: Pair<String, View.OnClickListener>) {
     val spannableString = SpannableString(this.text)

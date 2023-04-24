@@ -12,11 +12,12 @@ import androidx.navigation.fragment.findNavController
 import guilhermekunz.com.br.sospet.R
 import guilhermekunz.com.br.sospet.databinding.FragmentSignInBinding
 import guilhermekunz.com.br.sospet.ui.MainActivity
+import guilhermekunz.com.br.sospet.utils.KeyboardUtils
 import guilhermekunz.com.br.sospet.utils.PAIR_SIGN_IN
 import guilhermekunz.com.br.sospet.utils.dialog.ButtonDialogOne
 import guilhermekunz.com.br.sospet.utils.dialog.DialogGenericOneButton
 import guilhermekunz.com.br.sospet.utils.dialog.DialogOneButtonModel
-import guilhermekunz.com.br.sospet.utils.makeLinks
+import guilhermekunz.com.br.sospet.utils.extensions.makeLinks
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -84,6 +85,7 @@ class SignInFragment : Fragment() {
 
     private fun setupSignInButton() {
         binding.signInButton.setOnClickListener {
+            KeyboardUtils.hide(requireView())
             viewModel.signIn()
         }
     }

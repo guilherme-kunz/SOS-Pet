@@ -15,6 +15,7 @@ class SignUpViewModel : ViewModel() {
     private var cellPhone: String? = null
     var password: String? = null
     private var passwordConfirmation: String? = null
+    private var imageBase64: String? = null
 
     var loadingStateLiveDate = MutableLiveData<State>()
 
@@ -28,6 +29,10 @@ class SignUpViewModel : ViewModel() {
     val signUpResponse: LiveData<Unit> = _signUpResponse
 
     private val firebaseAuth by lazy { FirebaseAuth.getInstance() }
+
+    fun setImageBase64(imageBase64: String) {
+        this.imageBase64 = imageBase64
+    }
 
     fun setFullName(fullName: String) {
         this.fullName = fullName

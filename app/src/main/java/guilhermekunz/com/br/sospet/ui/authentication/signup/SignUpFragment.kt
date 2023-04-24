@@ -1,11 +1,19 @@
 package guilhermekunz.com.br.sospet.ui.authentication.signup
 
+import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
@@ -15,6 +23,12 @@ import guilhermekunz.com.br.sospet.R
 import guilhermekunz.com.br.sospet.databinding.FragmentSignUpBinding
 import guilhermekunz.com.br.sospet.ui.MainActivity
 import guilhermekunz.com.br.sospet.utils.*
+import guilhermekunz.com.br.sospet.utils.bottomsheet.BottomSheet
+import guilhermekunz.com.br.sospet.utils.bottomsheet.BottomSheetModel
+import guilhermekunz.com.br.sospet.utils.extensions.makeLinks
+import guilhermekunz.com.br.sospet.utils.extensions.removeEmojis
+import guilhermekunz.com.br.sospet.utils.extensions.rotatedToVertical
+import guilhermekunz.com.br.sospet.utils.extensions.toBase64
 import guilhermekunz.com.br.sospet.utils.validation.ValidationUtils
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -24,6 +38,21 @@ class SignUpFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel by viewModel<SignUpViewModel>()
+
+    private val bottomSheet by lazy { BottomSheet(requireContext()) }
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean ->
+            if (isGranted) {
+                val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                startActivityForResult(intent, CAMERA_REQUEST_CODE)
+            } else {
+                Toast.makeText(requireContext(), TOAST_CAMERA_PERMISSION, Toast.LENGTH_LONG)
+                    .show()
+            }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +74,7 @@ class SignUpFragment : Fragment() {
         initObserver()
         setupSignUpButton()
         setupFormErrors()
+        chooseProfileImage()
     }
 
     private fun setupGoToSignInButton() {
@@ -141,6 +171,7 @@ class SignUpFragment : Fragment() {
 
     private fun setupSignUpButton() {
         binding.signUpButton.setOnClickListener {
+            KeyboardUtils.hide(requireView())
             viewModel.signUp()
         }
     }
@@ -177,5 +208,78 @@ class SignUpFragment : Fragment() {
             }
             .show()
     }
+
+    private fun chooseProfileImage() {
+        binding.constraintSignUpAddProfileImage.setOnClickListener {
+            bottomSheet.apply {
+                setupBottomSheet(
+                    BottomSheetModel(
+                        camera = {
+                            camera()
+                            this.dismiss()
+                        },
+                        gallery = {
+                            gallery()
+                            this.dismiss()
+                        }
+                    )
+                )
+            }.show()
+        }
+    }
+
+    private fun gallery() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = GALLERY_IMAGE_TYPE
+        startActivityForResult(intent, IMAGE_REQUEST_CODE)
+    }
+
+    private fun camera() {
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                android.Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(intent, CAMERA_REQUEST_CODE)
+        } else {
+            requestPermissionLauncher.launch(android.Manifest.permission.CAMERA)
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == CAMERA_PERMISSION_CODE) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                startActivityForResult(intent, CAMERA_REQUEST_CODE)
+            } else {
+                Toast.makeText(requireContext(), TOAST_CAMERA_PERMISSION, Toast.LENGTH_LONG)
+                    .show()
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == CAMERA_REQUEST_CODE) {
+                val thumbnail: Bitmap = data?.extras?.get("data") as Bitmap
+                val rotatedBitmap = thumbnail.rotatedToVertical()
+                binding.motorcycleImage.setImageBitmap(rotatedBitmap)
+                viewModel.setImageBase64(rotatedBitmap.toBase64())
+            } else if (requestCode == IMAGE_REQUEST_CODE) {
+                val inputStream = requireContext().contentResolver.openInputStream(data!!.data!!)
+                val bitmap: Bitmap = BitmapFactory.decodeStream(inputStream)
+                viewModel.setImageBase64(bitmap.toBase64())
+                binding.motorcycleImage.setImageBitmap(bitmap)
+            }
+        }
+    }
+
 
 }

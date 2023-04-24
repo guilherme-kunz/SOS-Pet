@@ -54,4 +54,8 @@
     <string name="main_activity_dialog_content">A sua sessão expirou faça login novamente</string>
     <string name="main_activity_dialog_button">OK</string>
 
+    <!-- Strings related to Bottom Sheet-->
+    <string name="bottom_sheet_camera">Camera</string>
+    <string name="bottom_sheet_gallery">Galeria</string>
+
 </resources>

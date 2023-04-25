@@ -48,7 +48,17 @@
 
     <!-- Strings related to Fragment Profile-->
     <string name="fragment_profile_title">Perfil</string>
-    <string name="fragment_profile_add_image">Adicionar foto</string>
+    <string name="fragment_profile_change_image">Alterar foto</string>
+    <string name="fragment_profile_name_description">VocÊ pode alterar o nome da sua conta aqui!</string>
+    <string name="fragment_profile_cellphone_description">Você pode alterar o número do seu celular aqui!</string>
+    <string name="fragment_profile_update_button">Atualizar</string>
+    <string name="fragment_profile_reset_password_button">REDEFINIR SENHA</string>
+    <string name="fragment_profile_delete_account_button">EXCLUIR CONTA</string>
+    <string name="fragment_profile_logout_button">SAIR</string>
+    <string name="fragment_profile_dialog_title_delete_account">Tem certeza que você quer deletar a sua conta?</string>
+    <string name="fragment_profile_dialog_positive_button_delete_account">SIM</string>
+    <string name="fragment_profile_dialog_negative_button_delete_account">NÃO</string>
+    <string name="fragment_profile_dialog_delete_account_error_content">Não foi possivel excluir a sua conta tente novamente mais tarde.</string>
 
     <!-- Strings related to Main Activity-->
     <string name="main_activity_dialog_title">Sessão expirada</string>

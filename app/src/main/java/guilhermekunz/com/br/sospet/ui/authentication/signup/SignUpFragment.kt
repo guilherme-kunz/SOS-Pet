@@ -176,11 +176,11 @@ class SignUpFragment : Fragment() {
         }
     }
 
-    private fun handleProgressBar(state: SignUpViewModel.State) {
+    private fun handleProgressBar(state: LoadingStates) {
         when (state) {
-            SignUpViewModel.State.LOADING -> binding.fragmentSignUpProgressBar.visibility =
+            LoadingStates.LOADING -> binding.fragmentSignUpProgressBar.visibility =
                 View.VISIBLE
-            SignUpViewModel.State.LOADING_FINISHED -> binding.fragmentSignUpProgressBar.visibility =
+            LoadingStates.LOADING_FINISHED -> binding.fragmentSignUpProgressBar.visibility =
                 View.GONE
         }
     }

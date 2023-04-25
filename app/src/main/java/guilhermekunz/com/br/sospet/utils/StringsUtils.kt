@@ -9,3 +9,4 @@ const val CAMERA_REQUEST_CODE = 2
 const val IMAGE_REQUEST_CODE = 3
 const val TOAST_CAMERA_PERMISSION = "Permissão para camera negada"
 const val GALLERY_IMAGE_TYPE = "image/*"
+const val VERSION = "Versão "

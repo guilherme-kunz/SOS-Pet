@@ -215,10 +215,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:layout_marginBottom="24dp"
                 android:text="@string/fragment_sign_up_go_to_sign_in"
+                android:textAlignment="center"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sign_up_button" />

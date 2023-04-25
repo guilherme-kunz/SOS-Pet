@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
+import guilhermekunz.com.br.sospet.utils.LoadingStates
 import guilhermekunz.com.br.sospet.utils.validation.ValidationUtils
 import kotlinx.coroutines.launch
 
@@ -21,6 +22,8 @@ class SignInViewModel : ViewModel() {
 
     private val _signInResponse = MutableLiveData<Unit>()
     val signInResponse: LiveData<Unit> = _signInResponse
+
+    var loadingStateLiveDate = MutableLiveData<LoadingStates>()
 
     private val firebaseAuth by lazy { FirebaseAuth.getInstance() }
 
@@ -41,6 +44,7 @@ class SignInViewModel : ViewModel() {
 
     fun signIn() {
         viewModelScope.takeIf { _validData.value == true }?.launch {
+            loadingStateLiveDate.value = LoadingStates.LOADING
             firebaseAuth.signInWithEmailAndPassword(email!!, password!!).addOnCompleteListener {
                 if (it.isSuccessful) {
                     _signInResponse.value = Unit
@@ -48,6 +52,7 @@ class SignInViewModel : ViewModel() {
                     _errorSignIn.value = Unit
                 }
             }
+            loadingStateLiveDate.value = LoadingStates.LOADING_FINISHED
         }
     }
 

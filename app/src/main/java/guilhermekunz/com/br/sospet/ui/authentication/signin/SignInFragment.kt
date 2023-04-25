@@ -13,6 +13,7 @@ import guilhermekunz.com.br.sospet.R
 import guilhermekunz.com.br.sospet.databinding.FragmentSignInBinding
 import guilhermekunz.com.br.sospet.ui.MainActivity
 import guilhermekunz.com.br.sospet.utils.KeyboardUtils
+import guilhermekunz.com.br.sospet.utils.LoadingStates
 import guilhermekunz.com.br.sospet.utils.PAIR_SIGN_IN
 import guilhermekunz.com.br.sospet.utils.dialog.ButtonDialogOne
 import guilhermekunz.com.br.sospet.utils.dialog.DialogGenericOneButton
@@ -66,6 +67,19 @@ class SignInFragment : Fragment() {
         }
         binding.fragmentSignInPassword.addTextChangedListener {
             viewModel.setPassword(it.toString())
+        }
+        viewModel.loadingStateLiveDate.observe(viewLifecycleOwner) {
+            it?.let {
+                handleProgressBar(it)
+            }
+        }
+    }
+
+    private fun handleProgressBar(state: LoadingStates) {
+        when (state) {
+            LoadingStates.LOADING -> binding.fragmentSignInProgressBar.visibility = View.VISIBLE
+            LoadingStates.LOADING_FINISHED -> binding.fragmentSignInProgressBar.visibility =
+                View.GONE
         }
     }
 

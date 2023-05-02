@@ -25,8 +25,8 @@
     <string name="fragment_sign_up_dialog_error_title">Erro</string>
     <string name="fragment_sign_up_dialog_error_content">Não foi possivel criar a sua conta tente novamente mais tarde.</string>
     <string name="fragment_sign_up_dialog_error_button">OK</string>
-    <string name="fragment_sign_up_dialog_success_title">Sucesso</string>
-    <string name="fragment_sign_up_dialog_success_content">Conta criada com sucesso, agora é só fazer login</string>
+    <string name="fragment_sign_up_dialog_success_title">Conta criada com sucesso</string>
+    <string name="fragment_sign_up_dialog_success_content">Agora é só aproveitar o aplicativo</string>
     <string name="fragment_sign_up_dialog_success_button">OK</string>
     <string name="fragment_sign_up_email_error_message">E-mail não está correto</string>
     <string name="fragment_sign_up_name_error_message">Nome não está correto</string>
@@ -59,6 +59,10 @@
     <string name="fragment_profile_dialog_positive_button_delete_account">SIM</string>
     <string name="fragment_profile_dialog_negative_button_delete_account">NÃO</string>
     <string name="fragment_profile_dialog_delete_account_error_content">Não foi possivel excluir a sua conta tente novamente mais tarde.</string>
+    <string name="fragment_profile_dialog_reset_password_title">Digite a sua nova senha</string>
+    <string name="fragment_profile_dialog_reset_password_ok">Redefinir</string>
+    <string name="fragment_profile_dialog_reset_password_success_title">Senha alterada com sucesso!</string>
+    <string name="fragment_profile_dialog_reset_password_error_title">Não foi possivel atlerar a sua senha. Tente novamento mais tarde.</string>
 
     <!-- Strings related to Main Activity-->
     <string name="main_activity_dialog_title">Sessão expirada</string>

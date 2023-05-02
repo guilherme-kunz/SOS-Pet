@@ -6,11 +6,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import guilhermekunz.com.br.sospet.R
 import guilhermekunz.com.br.sospet.databinding.FragmentProfileBinding
-import guilhermekunz.com.br.sospet.ui.MainActivity
 import guilhermekunz.com.br.sospet.ui.authentication.AuthenticationActivity
 import guilhermekunz.com.br.sospet.utils.LoadingStates
 import guilhermekunz.com.br.sospet.utils.VERSION
@@ -23,6 +24,10 @@ class ProfileFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel by viewModel<ProfileViewModel>()
+
+    private val dialogLayout = layoutInflater.inflate(R.layout.reset_password_dialog_layout, null)
+    private val resetPasswordEditTextView =
+        dialogLayout.findViewById<EditText>(R.id.layout_reset_password_dialog_input)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,6 +48,8 @@ class ProfileFragment : Fragment() {
         logoutButton()
         deleteAccountButton()
         initObserver()
+        setupResetPassword()
+        setupInputs()
     }
 
     private fun initObserver() {
@@ -57,6 +64,28 @@ class ProfileFragment : Fragment() {
         viewModel.errorDeleteAccount.observe(viewLifecycleOwner) {
             deleteAccountError()
         }
+        viewModel.resetPasswordResponse.observe(viewLifecycleOwner) {
+            dialogResetPasswordSuccess()
+        }
+        viewModel.errorResetPassword.observe(viewLifecycleOwner) {
+            dialogResetPasswordError()
+        }
+    }
+
+    private fun dialogResetPasswordError() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(resources.getString(R.string.fragment_profile_dialog_reset_password_error_title))
+            .setNeutralButton(resources.getString(R.string.fragment_sign_up_dialog_error_button)) { _, _ ->
+            }
+            .show()
+    }
+
+    private fun dialogResetPasswordSuccess() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(resources.getString(R.string.fragment_profile_dialog_reset_password_success_title))
+            .setNeutralButton(resources.getString(R.string.fragment_sign_up_dialog_error_button)) { _, _ ->
+            }
+            .show()
     }
 
     private fun handleProgressBar(state: LoadingStates) {
@@ -108,6 +137,28 @@ class ProfileFragment : Fragment() {
             .setNeutralButton(resources.getString(R.string.fragment_sign_up_dialog_error_button)) { _, _ ->
             }
             .show()
+    }
+
+    private fun setupResetPassword() {
+        binding.profileResetPassword.setOnClickListener {
+            resetPasswordDialog()
+        }
+    }
+
+    private fun resetPasswordDialog() {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(resources.getString(R.string.fragment_profile_dialog_reset_password_title))
+            .setNeutralButton(resources.getString(R.string.fragment_profile_dialog_reset_password_ok)) { _, _ ->
+                viewModel.resetPassword()
+            }
+            .setView(dialogLayout)
+            .show()
+    }
+
+    private fun setupInputs() {
+        resetPasswordEditTextView.addTextChangedListener {
+            viewModel.setResetPassword(it.toString())
+        }
     }
 
 

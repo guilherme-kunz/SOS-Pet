@@ -6,9 +6,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import guilhermekunz.com.br.sospet.utils.LoadingStates
+import guilhermekunz.com.br.sospet.utils.validation.ValidationUtils
 import kotlinx.coroutines.launch
 
 class ProfileViewModel : ViewModel() {
+
+    private var newPassword: String? = null
 
     private val firebaseAuth by lazy { FirebaseAuth.getInstance() }
 
@@ -20,8 +23,18 @@ class ProfileViewModel : ViewModel() {
 
     var loadingStateLiveDate = MutableLiveData<LoadingStates>()
 
-    //Loading Progress Bar
-    //Validate Statues
+    private val _validData = MutableLiveData(false)
+
+    private val _errorResetPassword = MutableLiveData<Unit>()
+    val errorResetPassword: LiveData<Unit> = _errorResetPassword
+
+    private val _resetPasswordResponse = MutableLiveData<Unit>()
+    val resetPasswordResponse: LiveData<Unit> = _resetPasswordResponse
+
+    fun setResetPassword(newPassword: String) {
+        this.newPassword = newPassword
+        validateData()
+    }
 
     fun deleteAccount() {
         viewModelScope.launch {
@@ -37,6 +50,26 @@ class ProfileViewModel : ViewModel() {
                 }
             loadingStateLiveDate.value = LoadingStates.LOADING_FINISHED
         }
+    }
+
+    fun resetPassword() {
+        viewModelScope.takeIf { _validData.value == true }?.launch {
+            loadingStateLiveDate.value = LoadingStates.LOADING
+            val user = firebaseAuth.currentUser
+            user!!.updatePassword(newPassword.toString())
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        _deleteAccountResponse.value = Unit
+                    } else {
+                        _errorResetPassword.value = Unit
+                    }
+                }
+            loadingStateLiveDate.value = LoadingStates.LOADING_FINISHED
+        }
+    }
+
+    private fun validateData() {
+        _validData.value = ValidationUtils.isPasswordValidated(newPassword) == true
     }
 
 }

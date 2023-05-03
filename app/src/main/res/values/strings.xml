@@ -12,6 +12,7 @@
     <string name="fragment_sign_in_dialog_error_title">Erro</string>
     <string name="fragment_sign_in_dialog_error_content">Não foi possivel fazer login tente novamente mais tarde.</string>
     <string name="fragment_sign_in_dialog_error_button">OK</string>
+    <string name="fragment_sign_in_forgot_password">Esqueci minha senha</string>
 
     <!-- Strings related to Sign Up -->
     <string name="fragment_sign_up_name">Nome completo</string>
@@ -45,6 +46,10 @@
 
     <!-- Strings related to Fragment Adoption-->
     <string name="fragment_adoption_title">Em lar temporário para adoção</string>
+
+    <!-- Strings related to Fragment Rescue-->
+    <string name="fragment_rescue_title">Animais avistados a resgatar</string>
+    <string name="fragment_rescue_register">Registrado em</string>
 
     <!-- Strings related to Fragment Profile-->
     <string name="fragment_profile_title">Perfil</string>

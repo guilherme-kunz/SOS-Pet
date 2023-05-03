@@ -19,7 +19,7 @@
         android:id="@+id/rescueFragment"
         android:name="guilhermekunz.com.br.sospet.ui.rescue.RescueFragment"
         android:label="fragment_rescue"
-        tools:layout="@layout/fragment_sighted" />
+        tools:layout="@layout/fragment_rescue" />
     <fragment
         android:id="@+id/wantedFragment"
         android:name="guilhermekunz.com.br.sospet.ui.wanted.WantedFragment"

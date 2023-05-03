@@ -9,13 +9,19 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.viewModelScope
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import guilhermekunz.com.br.sospet.R
 import guilhermekunz.com.br.sospet.databinding.FragmentProfileBinding
 import guilhermekunz.com.br.sospet.ui.authentication.AuthenticationActivity
 import guilhermekunz.com.br.sospet.utils.LoadingStates
 import guilhermekunz.com.br.sospet.utils.VERSION
 import guilhermekunz.com.br.sospet.utils.VersionUtils
+import guilhermekunz.com.br.sospet.utils.extensions.setImageFromBase64
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileFragment : Fragment() {
@@ -25,9 +31,12 @@ class ProfileFragment : Fragment() {
 
     private val viewModel by viewModel<ProfileViewModel>()
 
-    private val dialogLayout = layoutInflater.inflate(R.layout.reset_password_dialog_layout, null)
-    private val resetPasswordEditTextView =
-        dialogLayout.findViewById<EditText>(R.id.layout_reset_password_dialog_input)
+    private lateinit var database: DatabaseReference
+    private val firebaseAuth by lazy { FirebaseAuth.getInstance() }
+
+//    private val dialogLayout = layoutInflater.inflate(R.layout.reset_password_dialog_layout, null)
+//    private val resetPasswordEditTextView =
+//        dialogLayout.findViewById<EditText>(R.id.layout_reset_password_dialog_input)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,8 +57,10 @@ class ProfileFragment : Fragment() {
         logoutButton()
         deleteAccountButton()
         initObserver()
-        setupResetPassword()
-        setupInputs()
+        getProfile()
+        setupOnBackPressed()
+//        setupResetPassword()
+//        setupInputs()
     }
 
     private fun initObserver() {
@@ -139,27 +150,70 @@ class ProfileFragment : Fragment() {
             .show()
     }
 
-    private fun setupResetPassword() {
-        binding.profileResetPassword.setOnClickListener {
-            resetPasswordDialog()
-        }
-    }
-
-    private fun resetPasswordDialog() {
-        MaterialAlertDialogBuilder(requireContext())
-            .setTitle(resources.getString(R.string.fragment_profile_dialog_reset_password_title))
-            .setNeutralButton(resources.getString(R.string.fragment_profile_dialog_reset_password_ok)) { _, _ ->
-                viewModel.resetPassword()
+    private fun getProfile() {
+        database = FirebaseDatabase.getInstance().getReference("users")
+            database.child(firebaseAuth.currentUser!!.uid).get().addOnSuccessListener {
+                if (it.exists()) {
+                    binding.fragmentProfileName.setText(it.child("name").value.toString())
+                    binding.fragmentProfileCellphone.setText(it.child("phone").value.toString())
+                    binding.profileImage.setImageFromBase64(it.child("profileImage").value.toString())
+                } else {
+//                    _errorGetProfile.value = Unit
+                }
+            }.addOnFailureListener {
+//                _errorGetProfile.value = Unit
             }
-            .setView(dialogLayout)
-            .show()
     }
 
-    private fun setupInputs() {
-        resetPasswordEditTextView.addTextChangedListener {
-            viewModel.setResetPassword(it.toString())
+    private fun setupOnBackPressed() {
+        binding.imgArrowBackProfile.setOnClickListener {
+            activity?.onBackPressed()
         }
     }
+
+//    fun getProfile() {
+//        viewModelScope.launch {
+//            loadingStateLiveDate.value = LoadingStates.LOADING
+//            database = FirebaseDatabase.getInstance().getReference("users")
+//            database.child(firebaseAuth.currentUser!!.uid).get().addOnSuccessListener {
+//                if (it.exists()) {
+//                    name = it.child("name").value.toString()
+//                    email = it.child("email").value.toString()
+//                    phone = it.child("phone").value.toString()
+//                    uid = it.child("uid").value.toString()
+//                    profileImage = it.child("profileImage").value.toString()
+//                } else {
+//                    _errorGetProfile.value = Unit
+//                }
+//            }.addOnFailureListener {
+//                _errorGetProfile.value = Unit
+//            }
+//            loadingStateLiveDate.value = LoadingStates.LOADING_FINISHED
+//        }
+//    }
+
+
+//    private fun setupResetPassword() {
+//        binding.profileResetPassword.setOnClickListener {
+//            resetPasswordDialog()
+//        }
+//    }
+
+//    private fun resetPasswordDialog() {
+//        MaterialAlertDialogBuilder(requireContext())
+//            .setTitle(resources.getString(R.string.fragment_profile_dialog_reset_password_title))
+//            .setNeutralButton(resources.getString(R.string.fragment_profile_dialog_reset_password_ok)) { _, _ ->
+//                viewModel.resetPassword()
+//            }
+//            .setView(dialogLayout)
+//            .show()
+//    }
+
+//    private fun setupInputs() {
+//        resetPasswordEditTextView.addTextChangedListener {
+//            viewModel.setResetPassword(it.toString())
+//        }
+//    }
 
 
 }

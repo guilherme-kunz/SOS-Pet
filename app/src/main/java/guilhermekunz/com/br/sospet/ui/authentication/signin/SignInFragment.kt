@@ -6,9 +6,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import guilhermekunz.com.br.sospet.R
 import guilhermekunz.com.br.sospet.databinding.FragmentSignInBinding
 import guilhermekunz.com.br.sospet.ui.MainActivity
@@ -31,6 +33,10 @@ class SignInFragment : Fragment() {
 
     private val dialogDialogGenericOneButton by lazy { DialogGenericOneButton(requireContext()) }
 
+//    private val dialogLayout = layoutInflater.inflate(R.layout.reset_password_dialog_layout_sign_in, null)
+//    private val resetPasswordEditTextView =
+//        dialogLayout.findViewById<EditText>(R.id.layout_reset_password_dialog_input_sign_in)
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,6 +56,7 @@ class SignInFragment : Fragment() {
         setupInputs()
         initObserver()
         setupSignInButton()
+//        setupForgotPassword()
     }
 
     private fun setupGoToSignUpButton() {
@@ -68,11 +75,9 @@ class SignInFragment : Fragment() {
         binding.fragmentSignInPassword.addTextChangedListener {
             viewModel.setPassword(it.toString())
         }
-        viewModel.loadingStateLiveDate.observe(viewLifecycleOwner) {
-            it?.let {
-                handleProgressBar(it)
-            }
-        }
+//        resetPasswordEditTextView.addTextChangedListener {
+//            viewModel.setResetPassword(it.toString())
+//        }
     }
 
     private fun handleProgressBar(state: LoadingStates) {
@@ -94,6 +99,11 @@ class SignInFragment : Fragment() {
         }
         viewModel.errorSignIn.observe(viewLifecycleOwner) {
             signInError()
+        }
+        viewModel.loadingStateLiveDate.observe(viewLifecycleOwner) {
+            it?.let {
+                handleProgressBar(it)
+            }
         }
     }
 
@@ -118,5 +128,21 @@ class SignInFragment : Fragment() {
             )
         }.show()
     }
+
+//    private fun setupForgotPassword() {
+//        binding.signIngForgotPassword.setOnClickListener {
+//            dialogForgotPassword()
+//        }
+//    }
+
+//    private fun dialogForgotPassword() {
+//        MaterialAlertDialogBuilder(requireContext())
+//            .setTitle(resources.getString(R.string.fragment_profile_dialog_reset_password_title))
+//            .setNeutralButton(resources.getString(R.string.fragment_profile_dialog_reset_password_ok)) { _, _ ->
+//                viewModel.resetPassword()
+//            }
+//            .setView(dialogLayout)
+//            .show()
+//    }
 
 }

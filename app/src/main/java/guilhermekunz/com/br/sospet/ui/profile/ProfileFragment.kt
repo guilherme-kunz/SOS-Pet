@@ -150,6 +150,7 @@ class ProfileFragment : Fragment() {
             .show()
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun getProfile() {
         database = FirebaseDatabase.getInstance().getReference("users")
             database.child(firebaseAuth.currentUser!!.uid).get().addOnSuccessListener {

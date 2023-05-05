@@ -50,6 +50,9 @@
     <!-- Strings related to Fragment Rescue-->
     <string name="fragment_rescue_title">Animais avistados a resgatar</string>
     <string name="fragment_rescue_register">Registrado em</string>
+    <string name="fragment_rescue_info_dialog_title">Animais para resgate</string>
+    <string name="fragment_rescue_info_dialog_content">Essa página mostra animais que precisam ser resgatados.</string>
+    <string name="fragment_rescue_info_dialog_action">Entendi</string>
 
     <!-- Strings related to Fragment Profile-->
     <string name="fragment_profile_title">Perfil</string>
@@ -77,7 +80,5 @@
     <!-- Strings related to Bottom Sheet-->
     <string name="bottom_sheet_camera">Camera</string>
     <string name="bottom_sheet_gallery">Galeria</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

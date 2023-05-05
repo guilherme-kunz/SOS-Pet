@@ -1,5 +1,6 @@
 package guilhermekunz.com.br.sospet.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -10,6 +11,7 @@ import guilhermekunz.com.br.sospet.R
 import guilhermekunz.com.br.sospet.launcher.LauncherActivity
 import guilhermekunz.com.br.sospet.ui.authentication.AuthenticationActivity
 
+@SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +19,7 @@ class SplashScreenActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash_screen)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this@SplashScreenActivity, AuthenticationActivity::class.java)
+            val intent = Intent(this@SplashScreenActivity, LauncherActivity::class.java)
             startActivity(intent)
             finish()
         }, 2000)

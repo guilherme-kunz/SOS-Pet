@@ -46,6 +46,9 @@
 
     <!-- Strings related to Fragment Adoption-->
     <string name="fragment_adoption_title">Em lar temporário para adoção</string>
+    <string name="fragment_adoption_info_dialog_title">Animais para Adoção</string>
+    <string name="fragment_adoption_info_dialog_content">Essa página mostra animais que estão disponiveis para serem adotados</string>
+    <string name="fragment_adoption_info_dialog_action">Entendi</string>
 
     <!-- Strings related to Fragment Rescue-->
     <string name="fragment_rescue_title">Animais avistados a resgatar</string>

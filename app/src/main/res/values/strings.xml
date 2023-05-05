@@ -54,6 +54,12 @@
     <string name="fragment_rescue_info_dialog_content">Essa página mostra animais que precisam ser resgatados.</string>
     <string name="fragment_rescue_info_dialog_action">Entendi</string>
 
+    <!-- Strings related to Fragment Wanted-->
+    <string name="fragment_wanted_info_dialog_title">Animais procurados</string>
+    <string name="fragment_wanted_info_dialog_content">Essa página mostra foram perdidos por seus donos.</string>
+    <string name="fragment_wanted_info_dialog_action">Entendi</string>
+    <string name="fragment_wanted_title">Animais procurados a resgatar</string>
+
     <!-- Strings related to Fragment Profile-->
     <string name="fragment_profile_title">Perfil</string>
     <string name="fragment_profile_change_image">Alterar foto</string>

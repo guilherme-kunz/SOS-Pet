@@ -9,20 +9,89 @@
         android:id="@+id/adoptionFragment"
         android:name="guilhermekunz.com.br.sospet.ui.adoption.AdoptionFragment"
         android:label="fragment_adoption"
-        tools:layout="@layout/fragment_adoption" />
+        tools:layout="@layout/fragment_adoption" >
+        <action
+            android:id="@+id/action_adoptionFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_adoptionFragment_to_rescueFragment"
+            app:destination="@id/rescueFragment" />
+        <action
+            android:id="@+id/action_adoptionFragment_to_wantedFragment"
+            app:destination="@id/wantedFragment" />
+        <action
+            android:id="@+id/action_adoptionFragment_to_adoptionFormFragment"
+            app:destination="@id/adoptionFormFragment" />
+        <action
+            android:id="@+id/action_adoptionFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="guilhermekunz.com.br.sospet.ui.profile.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_adoptionFragment"
+            app:destination="@id/adoptionFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_rescueFragment"
+            app:destination="@id/rescueFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_wantedFragment"
+            app:destination="@id/wantedFragment" />
+    </fragment>
     <fragment
         android:id="@+id/rescueFragment"
         android:name="guilhermekunz.com.br.sospet.ui.rescue.RescueFragment"
         android:label="fragment_rescue"
-        tools:layout="@layout/fragment_rescue" />
+        tools:layout="@layout/fragment_rescue" >
+        <action
+            android:id="@+id/action_rescueFragment_to_adoptionFragment"
+            app:destination="@id/adoptionFragment" />
+        <action
+            android:id="@+id/action_rescueFragment_to_wantedFragment"
+            app:destination="@id/wantedFragment" />
+        <action
+            android:id="@+id/action_rescueFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/wantedFragment"
         android:name="guilhermekunz.com.br.sospet.ui.wanted.WantedFragment"
         android:label="fragment_wanted"
-        tools:layout="@layout/fragment_wanted" />
+        tools:layout="@layout/fragment_wanted" >
+        <action
+            android:id="@+id/action_wantedFragment_to_adoptionFragment"
+            app:destination="@id/adoptionFragment" />
+        <action
+            android:id="@+id/action_wantedFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_wantedFragment_to_rescueFragment"
+            app:destination="@id/rescueFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adoptionFormFragment"
+        android:name="guilhermekunz.com.br.sospet.ui.adoption.form.AdoptionFormFragment"
+        android:label="fragment_adoption_form"
+        tools:layout="@layout/fragment_adoption_form" >
+        <action
+            android:id="@+id/action_adoptionFormFragment_to_adoptionFragment"
+            app:destination="@id/adoptionFragment" />
+        <action
+            android:id="@+id/action_adoptionFormFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_adoptionFormFragment_to_rescueFragment"
+            app:destination="@id/rescueFragment" />
+        <action
+            android:id="@+id/action_adoptionFormFragment_to_wantedFragment"
+            app:destination="@id/wantedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="guilhermekunz.com.br.sospet.ui.form.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
 </navigation>

@@ -1,10 +1,12 @@
 package guilhermekunz.com.br.sospet.ui.adoption
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -12,8 +14,10 @@ import com.google.firebase.database.*
 import guilhermekunz.com.br.sospet.R
 import guilhermekunz.com.br.sospet.databinding.FragmentAdoptionBinding
 import guilhermekunz.com.br.sospet.model.Adoption
-import guilhermekunz.com.br.sospet.model.Rescue
-import guilhermekunz.com.br.sospet.ui.rescue.RescueAdapter
+import guilhermekunz.com.br.sospet.ui.MainActivity
+import guilhermekunz.com.br.sospet.ui.adoption.form.MapsActivity
+import java.util.*
+import kotlin.collections.ArrayList
 
 class AdoptionFragment : Fragment() {
 
@@ -42,6 +46,8 @@ class AdoptionFragment : Fragment() {
         setupRecyclerView()
         getRescueData()
         showInfoDialog()
+        setupFloatingButton()
+        val id: UUID = UUID.randomUUID()
     }
 
     private fun setupRecyclerView() {
@@ -79,5 +85,11 @@ class AdoptionFragment : Fragment() {
             .show()
     }
 
+    private fun setupFloatingButton() {
+        binding.fragmentAdoptionFloatingActionButton.setOnClickListener {
+            val intent = Intent(requireContext(), MapsActivity::class.java)
+            startActivity(intent)
+        }
+    }
 
 }

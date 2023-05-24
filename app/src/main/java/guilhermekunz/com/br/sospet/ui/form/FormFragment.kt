@@ -26,12 +26,15 @@ class FormFragment : Fragment() {
         _binding = null
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
+
     //Imagem
     //Especie
     //Raça
     //Cor da Pele
     //Porte
-    //Localização
 
 
 

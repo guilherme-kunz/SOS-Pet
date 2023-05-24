@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         setupBottomNavigation()
-        verifyUser()
+//        verifyUser()
     }
 
     private fun verifyUser() {

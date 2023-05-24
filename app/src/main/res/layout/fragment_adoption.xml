@@ -26,7 +26,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fragmentAdoptionTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/fragmentAdoptionTitle"
+        tools:listitem="@layout/adoption_item"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fragmentAdoptionFloatingActionButton"

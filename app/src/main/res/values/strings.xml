@@ -90,4 +90,14 @@
     <string name="bottom_sheet_camera">Camera</string>
     <string name="bottom_sheet_gallery">Galeria</string>
 
+    <!-- Strings related to Adoption Form Fragment -->
+    <string name="fragment_adoption_form_name_hint">Nome do Pet</string>
+    <string name="fragment_adoption_form_breed_hint">Raça do Pet</string>
+    <string name="fragment_adoption_form_spinner_hint">Sexo</string>
+    <string name="fragment_adoption_form_fur_hint">Cor do Pelo</string>
+    <string name="fragment_adoption_form_size_hint">Tamanho</string>
+
+
+    <string name="forgot_password_text">Digite abaixo seu email.\nVocê receberá um email com instruções\npara recuperar sua senha.</string>
+
 </resources>

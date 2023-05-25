@@ -5,5 +5,7 @@ data class Wanted(
     var date: String? = null,
     var fur: String? = null,
     var gender: String? = null,
-    var size: String? = null
+    var size: String? = null,
+    var image: String? = null,
+    var name: String? = null
 )

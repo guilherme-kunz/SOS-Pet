@@ -58,7 +58,7 @@ class AdoptionFragment : Fragment() {
     }
 
     private fun getRescueData() {
-        databaseReference = FirebaseDatabase.getInstance().getReference("rescue")
+        databaseReference = FirebaseDatabase.getInstance().getReference("adoption")
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {

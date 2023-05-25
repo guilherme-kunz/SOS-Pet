@@ -157,7 +157,7 @@ class ProfileFragment : Fragment() {
                 if (it.exists()) {
                     binding.fragmentProfileName.setText(it.child("name").value.toString())
                     binding.fragmentProfileCellphone.setText(it.child("phone").value.toString())
-                    binding.profileImage.setImageFromBase64(it.child("profileImage").value.toString())
+                    binding.profileImage.setImageFromBase64(it.child("profileImage").value.toString(), R.drawable.ic_add_profile_image)
                 } else {
 //                    _errorGetProfile.value = Unit
                 }

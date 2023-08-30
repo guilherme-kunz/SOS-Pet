@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="guilhermekunz.com.br.sospet" >
+    package="guilhermekunz.com.br.sospet">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".core.Application"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -12,10 +18,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SOSPet"
-        tools:targetApi="31" >
+        tools:targetApi="31">
+        <activity
+            android:name=".ui.adoption.form.MapsActivity"
+            android:exported="false" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCs0BvC2KKnjfilZT32fVbpQDNXrCOaSmQ" />
+
+        <activity
+            android:name=".ui.authentication.AuthenticationActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.SplashScreenActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,6 +42,10 @@
         <activity
             android:name=".ui.MainActivity"
             android:exported="false" />
+        <activity
+            android:name=".launcher.LauncherActivity"
+            android:exported="false"
+            android:targetActivity=".launcher.LauncherActivity" />
     </application>
 
 </manifest>

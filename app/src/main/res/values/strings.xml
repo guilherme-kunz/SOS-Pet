@@ -1,3 +1,103 @@
 <resources>
+
     <string name="app_name">SOS Pet</string>
+
+    <!-- Strings related to Sign In -->
+    <string name="prompt_email">E-mail</string>
+    <string name="description_email">Digite o seu e-mail para realizar o login</string>
+    <string name="description_password">Digite a sua senha para realizar o login</string>
+    <string name="button_login">ENTRAR</string>
+    <string name="prompt_password">Senha</string>
+    <string name="fragment_sign_in_go_to_sign_up">Novo por aqui? Cadastre-se</string>
+    <string name="fragment_sign_in_dialog_error_title">Erro</string>
+    <string name="fragment_sign_in_dialog_error_content">Não foi possivel fazer login tente novamente mais tarde.</string>
+    <string name="fragment_sign_in_dialog_error_button">OK</string>
+    <string name="fragment_sign_in_forgot_password">Esqueci minha senha</string>
+
+    <!-- Strings related to Sign Up -->
+    <string name="fragment_sign_up_name">Nome completo</string>
+    <string name="fragment_sign_up_button">Cadastrar</string>
+    <string name="fragment_sign_up_name_description">Digite o seu nome completo para realizar o cadastro</string>
+    <string name="fragment_sign_up_cellphone">Celular</string>
+    <string name="fragment_sign_up_cellphone_description">Digite o seu número do celular para realizar o cadastro</string>
+    <string name="fragment_sign_up_confirm_password">Confirme a senha</string>
+    <string name="fragment_sign_up_go_to_sign_in">Já possui uma conta? Faça login</string>
+    <string name="fragment_sign_up_password_instructions">Sua senha precisa conter no mínimo 8 caracteres, sendo ao menos uma letra maiúscula, números e caracteres especiais.</string>
+    <string name="fragment_sign_up_dialog_error_title">Erro</string>
+    <string name="fragment_sign_up_dialog_error_content">Não foi possivel criar a sua conta tente novamente mais tarde.</string>
+    <string name="fragment_sign_up_dialog_error_button">OK</string>
+    <string name="fragment_sign_up_dialog_success_title">Conta criada com sucesso</string>
+    <string name="fragment_sign_up_dialog_success_content">Agora é só aproveitar o aplicativo</string>
+    <string name="fragment_sign_up_dialog_success_button">OK</string>
+    <string name="fragment_sign_up_email_error_message">E-mail não está correto</string>
+    <string name="fragment_sign_up_name_error_message">Nome não está correto</string>
+    <string name="fragment_sign_up_password_error_message">Senha não é valida</string>
+    <string name="fragment_sign_up_confirm_password_error_message">As senhas não são identicas</string>
+    <string name="fragment_sign_up_cell_phone_error_message">O número de celular não é válido</string>
+    <string name="fragment_sign_up_add_pic">Adicionar foto</string>
+
+    <!--    <string name="fragment_sign_up_go_to_sign_in_button">Faça login</string>-->
+
+    <!-- Strings related to Bottom Navigation-->
+    <string name="bottom_navigation_rescue">Resgate</string>
+    <string name="bottom_navigation_wanted">Procurados</string>
+    <string name="bottom_navigation_adoption">Adoção</string>
+    <string name="bottom_navigation_profile">Perfil</string>
+
+    <!-- Strings related to Fragment Adoption-->
+    <string name="fragment_adoption_title">Em lar temporário para adoção</string>
+    <string name="fragment_adoption_info_dialog_title">Animais para Adoção</string>
+    <string name="fragment_adoption_info_dialog_content">Essa página mostra animais que estão disponiveis para serem adotados</string>
+    <string name="fragment_adoption_info_dialog_action">Entendi</string>
+
+    <!-- Strings related to Fragment Rescue-->
+    <string name="fragment_rescue_title">Animais avistados a resgatar</string>
+    <string name="fragment_rescue_register">Registrado em</string>
+    <string name="fragment_rescue_info_dialog_title">Animais para resgate</string>
+    <string name="fragment_rescue_info_dialog_content">Essa página mostra animais que precisam ser resgatados.</string>
+    <string name="fragment_rescue_info_dialog_action">Entendi</string>
+
+    <!-- Strings related to Fragment Wanted-->
+    <string name="fragment_wanted_info_dialog_title">Animais procurados</string>
+    <string name="fragment_wanted_info_dialog_content">Essa página mostra foram perdidos por seus donos.</string>
+    <string name="fragment_wanted_info_dialog_action">Entendi</string>
+    <string name="fragment_wanted_title">Animais procurados a resgatar</string>
+
+    <!-- Strings related to Fragment Profile-->
+    <string name="fragment_profile_title">Perfil</string>
+    <string name="fragment_profile_change_image">Alterar foto</string>
+    <string name="fragment_profile_name_description">VocÊ pode alterar o nome da sua conta aqui!</string>
+    <string name="fragment_profile_cellphone_description">Você pode alterar o número do seu celular aqui!</string>
+    <string name="fragment_profile_update_button">Atualizar</string>
+    <string name="fragment_profile_reset_password_button">REDEFINIR SENHA</string>
+    <string name="fragment_profile_delete_account_button">EXCLUIR CONTA</string>
+    <string name="fragment_profile_logout_button">SAIR</string>
+    <string name="fragment_profile_dialog_title_delete_account">Tem certeza que você quer deletar a sua conta?</string>
+    <string name="fragment_profile_dialog_positive_button_delete_account">SIM</string>
+    <string name="fragment_profile_dialog_negative_button_delete_account">NÃO</string>
+    <string name="fragment_profile_dialog_delete_account_error_content">Não foi possivel excluir a sua conta tente novamente mais tarde.</string>
+    <string name="fragment_profile_dialog_reset_password_title">Digite a sua nova senha</string>
+    <string name="fragment_profile_dialog_reset_password_ok">Redefinir</string>
+    <string name="fragment_profile_dialog_reset_password_success_title">Senha alterada com sucesso!</string>
+    <string name="fragment_profile_dialog_reset_password_error_title">Não foi possivel atlerar a sua senha. Tente novamento mais tarde.</string>
+
+    <!-- Strings related to Main Activity-->
+    <string name="main_activity_dialog_title">Sessão expirada</string>
+    <string name="main_activity_dialog_content">A sua sessão expirou faça login novamente</string>
+    <string name="main_activity_dialog_button">OK</string>
+
+    <!-- Strings related to Bottom Sheet-->
+    <string name="bottom_sheet_camera">Camera</string>
+    <string name="bottom_sheet_gallery">Galeria</string>
+
+    <!-- Strings related to Adoption Form Fragment -->
+    <string name="fragment_adoption_form_name_hint">Nome do Pet</string>
+    <string name="fragment_adoption_form_breed_hint">Raça do Pet</string>
+    <string name="fragment_adoption_form_spinner_hint">Sexo</string>
+    <string name="fragment_adoption_form_fur_hint">Cor do Pelo</string>
+    <string name="fragment_adoption_form_size_hint">Tamanho</string>
+
+
+    <string name="forgot_password_text">Digite abaixo seu email.\nVocê receberá um email com instruções\npara recuperar sua senha.</string>
+
 </resources>

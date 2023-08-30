@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "142575309739",
+    "project_id": "sos-pet-89846",
+    "storage_bucket": "sos-pet-89846.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142575309739:android:ddda6c509d72aa347d78ee",
+        "android_client_info": {
+          "package_name": "guilhermekunz.com.br.sospet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "142575309739-iqj3mbpdjdmqjfv059sp9quqg73splur.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCs0BvC2KKnjfilZT32fVbpQDNXrCOaSmQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "142575309739-iqj3mbpdjdmqjfv059sp9quqg73splur.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
